@@ -1,19 +1,21 @@
 import requests
+import os
 
 from download_images import download_images
 from urllib.parse import urlparse
-from telegram_bot import takeFiles
+from telegram_bot import TakeFiles
 
 
-catalog='epic'
+catalog = 'epic'
 url_nasa = "https://api.nasa.gov/EPIC/api/natural/images"
-payload = {'api_key': 'EUVNJu9n6Z7znO7ZEV0QpTs39hIaiurKaououAGr'}
+payload = {'api_key': os.environ['api_key']}
 response = requests.get(url_nasa, params=payload)
 response.raise_for_status()
 Epic_pictures = response.json()
 
 url_foto_earth = "https://api.nasa.gov/EPIC/archive/natural/2019/05/30/png/epic_1b_20190530011359.png?api_key=DEMO_KEY"
 url_foto_earth_split = url_foto_earth.split('/')
+
 
 def fetch_epic_pictures_of_the_day():
         
@@ -33,4 +35,7 @@ def fetch_epic_pictures_of_the_day():
         url_actual_foto = '/'.join(url_foto_earth_split)+'.'+url_foto_earth_split[9] + "?api_key=DEMO_KEY"
         name_epic_picture_template = """epic/{name}.png""".format(name=massiv_image)
         download_images(url_actual_foto, name_epic_picture_template)
-        # takeFiles(catalog)
+        TakeFiles(catalog)
+
+
+fetch_epic_pictures_of_the_day()

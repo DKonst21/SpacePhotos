@@ -1,10 +1,8 @@
 import telegram
-import requests
 import time
 import schedule
 import os
 
-from urllib.parse import urlparse
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,7 +13,8 @@ time_delay = 240
 
 # bot.send_message(chat_id='@space_photos_test', text="Здесь будут появляться картинки космоса")
 
-def takeFiles(catalog):
+
+def TakeFiles(catalog):
     global file, name
     filesindir = os.listdir(catalog)
     for filesindirs in filesindir:
@@ -23,7 +22,8 @@ def takeFiles(catalog):
         file = os.path.join(str(catalog), path)
         while True:
             schedule.run_pending()
-            schedule.every(time_delay).minutes.do(bot.send_photo(chat_id=os.environ['chat_id'], photo=open(f"{file}", 'rb')))
+            schedule.every(time_delay).minutes.do(bot.send_photo(chat_id=os.environ['chat_id'],
+                                                                 photo=open(f"{file}", 'rb')))
             time.sleep(5)
 
 # random.shuffle(lst)

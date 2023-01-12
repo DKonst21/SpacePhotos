@@ -1,8 +1,8 @@
 import requests
-# import urllib
 
-def download_images(url,file_path):
-    
+
+def download_images(url, file_path):
+
     response = requests.get(url)
     response.raise_for_status()
     
