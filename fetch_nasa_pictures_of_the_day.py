@@ -21,4 +21,4 @@ def fetch_nasa_pictures_of_the_day():
         TakeFiles(catalog)
 
 
-# fetch_nasa_pictures_of_the_day()
+fetch_nasa_pictures_of_the_day()
