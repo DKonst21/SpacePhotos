@@ -2,6 +2,7 @@ import requests
 import os
 
 from download_images import download_images
+from dotenv import load_dotenv
 
 
 def fetch_nasa_pictures_of_the_day():
@@ -25,6 +26,7 @@ def get_url(url):
 
 
 def main():
+    load_dotenv()
     fetch_nasa_pictures_of_the_day()
 
 

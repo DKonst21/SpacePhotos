@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 from download_images import download_images
 from urllib.parse import urlparse
+from dotenv import load_dotenv
 
 
 def fetch_epic_pictures_of_the_day():
@@ -40,6 +41,7 @@ def get_url(url):
 
 
 def main():
+    load_dotenv()
     fetch_epic_pictures_of_the_day()
 
 
