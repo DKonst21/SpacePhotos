@@ -2,11 +2,9 @@ import requests
 import os
 
 from download_images import download_images
-from telegram_bot import take_files
 
 
 def fetch_nasa_pictures_of_the_day():
-    catalog = 'APOD'
     url = "https://api.nasa.gov/planetary/apod"
     payload = {'api_key': os.environ['NASA_API_KEY']}
     response = requests.get(url, params=payload)
@@ -17,7 +15,6 @@ def fetch_nasa_pictures_of_the_day():
         name_picture_template = """nasa_apod{number}.jpg""".format(number=picture_number)
         picture_for_telegram = os.path.join("APOD", name_picture_template)
         download_images(picture, picture_for_telegram)
-        take_files(catalog)
 
 
 def main():

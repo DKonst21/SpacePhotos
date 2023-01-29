@@ -2,7 +2,6 @@ import requests
 import os
 
 from download_images import download_images
-from telegram_bot import take_files
 
 
 catalog = 'images'
@@ -19,7 +18,6 @@ def fetch_spacex_last_launch():
         name_picture_template = """spaceX{number}.jpg""".format(number=picture_number)
         picture_for_telegram = os.path.join("images", name_picture_template)
         download_images(picture, picture_for_telegram)
-        take_files(catalog)
 
 
 def main():
