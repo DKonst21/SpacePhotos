@@ -31,11 +31,13 @@ def fetch_epic_pictures_of_the_day():
         name_epic_picture_template = os.path.join("images", """{name}.png""".format(name=massiv_image))
         download_images(responce_url_actual_foto.url, name_epic_picture_template)
 
+
 def get_url(url):
     payload = {"api_key": 'DEMO_KEY'}
     response = requests.get(url, params=payload)
     response.raise_for_status()
     return response
+
 
 def main():
     fetch_epic_pictures_of_the_day()
