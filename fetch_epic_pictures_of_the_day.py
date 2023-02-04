@@ -35,11 +35,11 @@ def fetch_epic_pictures_of_the_day(api_key_foto):
 
 def get_url(url):
     epic_api_token = 'DEMO_KEY'
-    input("Введите токен:")
     if input() != epic_api_token:
-        payload = {"api_key": input().replace("\r", "")}
+        input("Введите токен:".replace("\r", ""))
+        payload = {"api_key": input()}
     else:
-        payload = {"api_key": 'DEMO_KEY'}
+        payload = {"api_key": epic_api_token}
     response = requests.get(url, params=payload)
     response.raise_for_status()
     return response
