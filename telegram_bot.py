@@ -10,25 +10,25 @@ time_delay = 4 * 60 * 60
 
 
 def take_files(bot, telegram_chat_id):
+
     catalog = "images"
-    parser = create_parser()
-    namespace = parser.parse_args()
-    if namespace.image:
-        file = str(os.path.join(str(catalog), namespace.image.split()[0]))
-        with open(f"{file}", 'rb') as file:
-            bot.send_photo(chat_id=telegram_chat_id, photo=file)
+
+    if create_parser().image:
+        filepath = os.path.join(catalog, create_parser().image.split()[0])
     else:
-        file = os.path.join(str(catalog), random.choice(os.listdir(catalog)))
-        with open(f"{file}", 'rb') as file:
-            bot.send_photo(chat_id=telegram_chat_id, photo=file)
-            time.sleep(5)
+        filepath = os.path.join(catalog, random.choice(os.listdir(catalog)))
+    with open(filepath, 'rb') as filepath:
+        bot.send_photo(chat_id=telegram_chat_id, photo=filepath)
+        time.sleep(5)
 
 
 def create_parser():
+
     parser = argparse.ArgumentParser()
     parser.add_argument('image', nargs='?')
+    namespace = parser.parse_args()
 
-    return parser
+    return namespace
 
 
 def main():
