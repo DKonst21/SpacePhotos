@@ -36,7 +36,11 @@ python fetch_nasa_pictures_of_the_day.py
 ### [fetch_spacex_images.py](fetch_spacex_images.py)
 С помощью этого файла можно скачать и загрузить файлы в телеграм-канал с сайта SpaceX (https://www.spacex.com/) с фотографиями последнего запуска космического корабля. Запустить скрипт можно в терминале с помощью команды:
 ```
-python fetch_spacex_images.py
+python fetch_spacex_images.py lauch_id
+```
+Укажите свой laucn_id, либо воспользуйтесь дефолтными настройками, пропустив ввод, нажатием кнопки Enter. Получить подсказку можно выполнив:
+```
+python fetch_spacex_images.py -h lauch_id
 ```
 ### [main.py](main.py)
 С помощью этого файла можно скачать и загрузить файлы в телеграм-канал, которые хранятся в проекте, либо были загружены ранее.
