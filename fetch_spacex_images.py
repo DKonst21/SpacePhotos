@@ -1,7 +1,10 @@
 import requests
 import os
+import argparse
+import urllib
 
 from download_images import download_images
+from urllib.parse import urlparse
 
 
 catalog = 'images'
@@ -9,15 +12,25 @@ file_path = 'images/50291306296_85b6ff12a2_o.jpg'
 
 
 def fetch_spacex_last_launch():
-    url = "https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a"
-    response = requests.get(url)
-    response.raise_for_status()
-    pictures = response.json()['links']['flickr']['original']
 
-    for picture_number, picture in enumerate(pictures):
+    for picture_number, picture in enumerate(create_response()):
         name_picture_template = """spaceX{number}.jpg""".format(number=picture_number)
         picture_for_telegram = os.path.join("images", name_picture_template)
         download_images(picture, picture_for_telegram)
+
+
+def create_response():
+    url = "https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a"
+    path_url = urlparse(url).path.split('/')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('lauch_id', help="Введите lauch_id. По умолчанию: 5eb87d47ffd86e000604b38a")
+    args = parser.parse_args()
+    if args.lauch_id == path_url[3]:
+        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{args.lauch_id}""".format(path=path_url))
+    else:
+        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{input()}""".format(path=input()))
+    response.raise_for_status()
+    return response.json()['links']['flickr']['original']
 
 
 def main():
