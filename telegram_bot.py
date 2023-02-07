@@ -13,8 +13,8 @@ def take_files(bot, telegram_chat_id):
 
     catalog = "images"
 
-    if create_parser().image:
-        filepath = os.path.join(catalog, create_parser().image.split()[0])
+    if create_parser():
+        filepath = os.path.join(catalog, create_parser().split()[0])
     else:
         filepath = os.path.join(catalog, random.choice(os.listdir(catalog)))
     with open(filepath, 'rb') as filepath:
@@ -28,7 +28,7 @@ def create_parser():
     parser.add_argument('image', nargs='?')
     namespace = parser.parse_args()
 
-    return namespace
+    return namespace.image
 
 
 def main():
