@@ -1,7 +1,6 @@
 import requests
 import os
 import argparse
-import urllib
 
 from download_images import download_images
 from urllib.parse import urlparse
@@ -22,15 +21,21 @@ def fetch_spacex_last_launch():
 def create_response():
     url = "https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a"
     path_url = urlparse(url).path.split('/')
-    parser = argparse.ArgumentParser()
-    parser.add_argument('lauch_id', help="Введите lauch_id. По умолчанию: 5eb87d47ffd86e000604b38a")
-    args = parser.parse_args()
-    if args.lauch_id == path_url[3]:
-        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{args.lauch_id}""".format(path=path_url))
+    launch_id = get_launch_id()
+    if launch_id == path_url[3]:
+        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{launch_id}""".format(path=path_url))
     else:
         response = requests.get(f"""https://api.spacexdata.com/v5/launches/{input()}""".format(path=input()))
     response.raise_for_status()
     return response.json()['links']['flickr']['original']
+
+
+def get_launch_id():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('launch_id', default="5eb87d47ffd86e000604b38a",
+                        help="Введите lauch_id. Например: 5eb87d47ffd86e000604b38a")
+    args = parser.parse_args()
+    return args.launch_id
 
 
 def main():
