@@ -38,7 +38,15 @@ python fetch_nasa_pictures_of_the_day.py
 ```
 python fetch_spacex_images.py lauch_id
 ```
-Укажите свой laucn_id, либо воспользуйтесь дефолтными настройками, пропустив ввод, нажатием кнопки Enter. Получить подсказку можно выполнив:
+Воспользуйтесь дефолтными настройками, набрав:
+```
+python fetch_spacex_images.py lauch_id 5eb87d47ffd86e000604b38a
+```
+либо укажите свой laucn_id, набрав команду ниже и нажав кнопку Enter:
+```
+python fetch_spacex_images.py lauch_id
+```
+Получить подсказку можно выполнив:
 ```
 python fetch_spacex_images.py -h lauch_id
 ```
