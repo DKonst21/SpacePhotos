@@ -7,6 +7,7 @@ def create_directory(directory):
         os.makedirs(directory)
 
 
+
 def download_images(url, file_path):
 
     response = requests.get(url)
