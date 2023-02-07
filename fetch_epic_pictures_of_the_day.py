@@ -9,21 +9,22 @@ from dotenv import load_dotenv
 
 
 def fetch_epic_pictures_of_the_day(api_key_foto):
-    url_nasa = "https://api.nasa.gov/EPIC/api/natural/images"
-    epic_pictures = get_url(url_nasa).json()
+    nasa_url = "https://api.nasa.gov/EPIC/api/natural/images"
+    epic_pictures = get_url(nasa_url).json()
 
     url_foto_earth = "https://api.nasa.gov/EPIC/archive/natural/2019/05/30/png/epic_1b_20190530011359.png"
     url_foto_earth_split = get_url(url_foto_earth).url.split('/')
 
     for index_number, index in enumerate(epic_pictures):
         massiv_image = index['image']
-        massiv_date = (datetime.fromisoformat(index['date']))
+        massiv_date = datetime.fromisoformat(index['date'])
         url_foto_earth_split[6] = massiv_date.strftime("%Y")
         url_foto_earth_split[7] = massiv_date.strftime("%m")
         url_foto_earth_split[8] = massiv_date.strftime("%d")
+        url_foto_earth_date = url_foto_earth_split[6:9]
         disassembled_url = urlparse(url_foto_earth)
         path = disassembled_url.path.split('/')
-        path[4:7] = url_foto_earth_split[6:9]
+        path[4:7] = url_foto_earth_date
 
         url_foto_earth_split[10] = massiv_image
         url_actual_foto = f"{'/'.join(url_foto_earth_split)}.{url_foto_earth_split[9]}"
@@ -34,15 +35,18 @@ def fetch_epic_pictures_of_the_day(api_key_foto):
 
 
 def get_url(url):
+    response = requests.get(url, params=input_payload())
+    response.raise_for_status()
+    return response
+
+
+def input_payload():
     epic_api_token = 'DEMO_KEY'
     if input() != epic_api_token:
         print("Введите токен:".replace("\r", ""))
-        payload = {"api_key": input()}
+        return {"api_key": input()}
     else:
-        payload = {"api_key": epic_api_token}
-    response = requests.get(url, params=payload)
-    response.raise_for_status()
-    return response
+        return {"api_key": epic_api_token}
 
 
 def main():
