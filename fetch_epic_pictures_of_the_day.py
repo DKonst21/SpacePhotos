@@ -22,18 +22,16 @@ def fetch_epic_pictures_of_the_day(api_key_foto):
         month = massiv_date.strftime("%m")
         day = massiv_date.strftime("%d")
         url_foto_earth_split[6:9] = [year, month, day]
-        print(massiv_image)
         disassembled_url = urlparse(url_foto_earth)
         path = disassembled_url.path.split('/')
         path[4:7] = [year, month, day]
 
         url_foto_earth_split[10] = massiv_image
-        print(url_foto_earth_split)
-        # url_actual_foto = f"{'/'.join(url_foto_earth_split)}.{url_foto_earth_split[9]}"
-        # responce_url_actual_foto = requests.get(url_actual_foto, params=api_key_foto)
-        # responce_url_actual_foto.raise_for_status()
-        # name_epic_picture_template = os.path.join("epic", """{name}.png""".format(name=massiv_image))
-        # download_images(responce_url_actual_foto.url, name_epic_picture_template)
+        url_actual_foto = f"{'/'.join(url_foto_earth_split)}.{url_foto_earth_split[9]}"
+        responce_url_actual_foto = requests.get(url_actual_foto, params=api_key_foto)
+        responce_url_actual_foto.raise_for_status()
+        name_epic_picture_template = os.path.join("epic", """{name}.png""".format(name=massiv_image))
+        download_images(responce_url_actual_foto.url, name_epic_picture_template)
 
 
 def get_url(url):
