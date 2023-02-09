@@ -23,17 +23,16 @@ def create_response():
     path_url = urlparse(url).path.split('/')
     launch_id = get_launch_id()
     if launch_id == path_url[3]:
-        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{launch_id}""".format(path=path_url))
+        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{path_url[3]}""".format(path=path_url))
     else:
-        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{input()}""".format(path=input()))
+        response = requests.get(f"""https://api.spacexdata.com/v5/launches/{launch_id}""".format(path=launch_id))
     response.raise_for_status()
     return response.json()['links']['flickr']['original']
 
 
 def get_launch_id():
     parser = argparse.ArgumentParser()
-    parser.add_argument('launch_id', default="5eb87d47ffd86e000604b38a",
-                        help="Введите lauch_id. Например: 5eb87d47ffd86e000604b38a")
+    parser.add_argument('launch_id', help='5eb87d47ffd86e000604b38a')
     args = parser.parse_args()
     return args.launch_id
 

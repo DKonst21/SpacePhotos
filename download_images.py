@@ -3,8 +3,7 @@ import os
 
 
 def create_directory(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    os.makedirs(directory, exist_ok=False)
 
 
 def download_images(url, file_path):

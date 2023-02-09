@@ -13,17 +13,18 @@ def fetch_nasa_pictures_of_the_day(response):
     download_images(nasa_pictures_of_the_day['url'], picture_for_telegram)
 
 
-def get_response():
+def get_response(payload):
     url = "https://api.nasa.gov/planetary/apod"
-    payload = {'api_key': os.environ['NASA_API_KEY']}
     response = requests.get(url, params=payload)
     response.raise_for_status()
     return response
 
+
 def main():
     load_dotenv()
     create_directory("APOD")
-    fetch_nasa_pictures_of_the_day(get_response())
+    payload = {'api_key': os.environ['NASA_API_KEY']}
+    fetch_nasa_pictures_of_the_day(get_response(payload))
 
 
 if __name__ == '__main__':

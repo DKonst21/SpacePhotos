@@ -40,15 +40,15 @@ python fetch_spacex_images.py lauch_id
 ```
 Воспользуйтесь дефолтными настройками, набрав:
 ```
-python fetch_spacex_images.py lauch_id 5eb87d47ffd86e000604b38a
+python fetch_spacex_images.py 5eb87d47ffd86e000604b38a
 ```
-либо укажите свой laucn_id, набрав команду ниже и нажав кнопку Enter:
+либо укажите свой laucn_id:
 ```
-python fetch_spacex_images.py lauch_id
+python fetch_spacex_images.py
 ```
 Получить подсказку можно выполнив:
 ```
-python fetch_spacex_images.py -h lauch_id
+python fetch_spacex_images.py -h
 ```
 ### [main.py](main.py)
 С помощью этого файла можно скачать и загрузить файлы в телеграм-канал, которые хранятся в проекте, либо были загружены ранее.
