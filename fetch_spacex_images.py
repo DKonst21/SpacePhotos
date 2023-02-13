@@ -3,7 +3,6 @@ import os
 import argparse
 
 from download_images import download_images
-from urllib.parse import urlparse
 
 
 catalog = 'images'
