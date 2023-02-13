@@ -161,8 +161,6 @@ cython_debug/
 /APOD
 /epic
 /images
-poetry.lock
-pyproject.toml
 
 *.pyc
 *.pyd
@@ -172,3 +170,5 @@ pyproject.toml
 Thumbs.db
 .DS_Store
 .config/
+poetry.lock
+pyproject.toml
