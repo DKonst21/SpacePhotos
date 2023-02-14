@@ -13,8 +13,7 @@ def take_files():
     catalog = "images"
 
     if create_parser():
-        picture = create_parser().split[0]
-        filepath = os.path.join(catalog, picture)
+        filepath = os.path.join(catalog, create_parser())
     else:
         filepath = os.path.join(catalog, random.choice(os.listdir(catalog)))
     return filepath
