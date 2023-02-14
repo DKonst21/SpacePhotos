@@ -5,10 +5,6 @@ import argparse
 from download_images import download_images
 
 
-catalog = 'images'
-file_path = 'images/50291306296_85b6ff12a2_o.jpg'
-
-
 def fetch_spacex_last_launch():
 
     for picture_number, picture in enumerate(create_response()):
@@ -28,7 +24,7 @@ def create_response():
 
 def get_launch_id():
     parser = argparse.ArgumentParser()
-    parser.add_argument('launch_id', default='5eb87d47ffd86e000604b38a')
+    parser.add_argument('--launch_id', default='5eb87d47ffd86e000604b38a')
     args = parser.parse_args()
     return args.launch_id
 

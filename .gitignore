@@ -160,7 +160,7 @@ cython_debug/
 #.idea/
 /APOD
 /epic
-/images
+#/images
 
 *.pyc
 *.pyd
