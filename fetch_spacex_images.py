@@ -2,7 +2,7 @@ import requests
 import os
 import argparse
 
-from download_images import download_images
+from download_images import download_images, create_directory
 
 
 def fetch_spacex_last_launch():
@@ -30,6 +30,7 @@ def get_launch_id():
 
 
 def main():
+    create_directory('images')
     fetch_spacex_last_launch()
 
 
