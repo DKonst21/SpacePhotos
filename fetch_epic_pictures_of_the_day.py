@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 def fetch_epic_pictures_of_the_day(api_key_foto):
     nasa_url = "https://api.nasa.gov/EPIC/api/natural/images"
-    epic_pictures = get_url(nasa_url, api_key_foto).json()
+    epic_pictures = get_response(nasa_url, api_key_foto).json()
 
     for index_number, index in enumerate(epic_pictures):
         massiv_image = index['image']
@@ -24,7 +24,7 @@ def fetch_epic_pictures_of_the_day(api_key_foto):
         download_images(response_url_actual_foto.url, name_epic_picture_template)
 
 
-def get_url(url, api_key_foto):
+def get_response(url, api_key_foto):
     response = requests.get(url, params=api_key_foto)
     response.raise_for_status()
     return response
